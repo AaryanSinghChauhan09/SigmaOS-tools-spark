@@ -1,3 +1,4 @@
+#![allow(non_snake_case)]
 //! Apache Spark RDD Engine for SigmaOS
 
 pub struct SparkRdd<T> {
