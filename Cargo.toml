@@ -1,0 +1,8 @@
+[package]
+name = "SigmaOS-tools-spark"
+version = "0.1.0"
+edition = "2021"
+description = "Apache Spark RDD lazy transformation and action engine"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
