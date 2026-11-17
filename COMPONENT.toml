@@ -3,7 +3,7 @@ name = "SigmaOS-tools-spark"
 tier = 2
 stability = "scaffold"
 language = "rust"
-description = "tools-spark component"
+description = "SigmaOS Tools Spark - Apache Spark RDD transformation and action engine"
 upstream = []
 
 [contract]
