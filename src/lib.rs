@@ -1,3 +1,4 @@
+#![forbid(unsafe_code)]
 #![allow(non_snake_case)]
 //! Apache Spark RDD Engine for SigmaOS
 
@@ -51,5 +52,44 @@ mod tests {
 
         // Assert
         assert_eq!(result, Some(300));
+    }
+}
+
+
+#[cfg(test)]
+mod spark_extra_tests {
+    use super::*;
+
+    #[test]
+    fn test_spark_collect_preserves_data_aaa() {
+        // Arrange
+        let items = vec!["a".to_string(), "b".to_string(), "c".to_string()];
+        let rdd = SparkRdd::parallelize(items.clone());
+        // Act
+        let collected = rdd.collect();
+        // Assert
+        assert_eq!(collected, items);
+    }
+
+    #[test]
+    fn test_spark_empty_rdd_count_and_reduce_aaa() {
+        // Arrange
+        let rdd: SparkRdd<i32> = SparkRdd::parallelize(Vec::new());
+        // Act
+        let cnt = rdd.count();
+        let red = rdd.reduce(|a, b| a + b);
+        // Assert
+        assert_eq!(cnt, 0);
+        assert_eq!(red, None);
+    }
+
+    #[test]
+    fn test_spark_filter_all_out_aaa() {
+        // Arrange
+        let rdd = SparkRdd::parallelize(vec![1, 3, 5]);
+        // Act
+        let evens = rdd.filter(|n| n % 2 == 0);
+        // Assert
+        assert_eq!(evens.count(), 0);
     }
 }
